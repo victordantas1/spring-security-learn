@@ -17,9 +17,9 @@ public class AnimalService {
 
     public List<Animal> findAll() { return repository.findAll(); }
 
-    public List<Animal> findByEspecie(String especie) { return repository.findByEspecie(especie); }
+    public List<Animal> findByEspecie(String especie) { return repository.findByEspecieIgnoreCase(especie); }
 
-    public Optional<Animal> findByNome(String nome) { return repository.findByNome(nome); }
+    public Optional<Animal> findByNome(String nome) { return repository.findByNomeIgnoreCase(nome); }
 
     public Animal saveAnimal(AnimalDTO animalDTO) { return repository.save(new Animal(animalDTO)); }
 
