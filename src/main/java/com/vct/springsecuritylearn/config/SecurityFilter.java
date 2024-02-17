@@ -28,12 +28,19 @@ public class SecurityFilter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withDefaultPasswordEncoder()
+        UserDetails admin = User.builder()
                 .username("victor")
-                .password("senha123")
-                .roles("ADMIN")
+                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .roles("ADMIN", "USER")
                 .build();
-        return new InMemoryUserDetailsManager(userDetails);
+
+        UserDetails user = User.builder()
+                .username("emmily")
+                .password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
+                .roles("USER")
+                .build();
+
+        return new InMemoryUserDetailsManager(admin, user);
     }
 
 }
